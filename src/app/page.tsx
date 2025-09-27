@@ -18,7 +18,7 @@ export default function KitchenDashboard() {
   // 🔄 Fetch kitchen orders
   const fetchOrders = async () => {
     try {
-      const res = await fetch("http://localhost:8000/users/kitchenorder");
+      const res = await fetch("https://jessika-patrological-crankly.ngrok-free.dev/users/kitchenorder");
       if (!res.ok) return;
       const data = await res.json();
       setOrders(Array.isArray(data) ? data : []);
@@ -31,12 +31,12 @@ export default function KitchenDashboard() {
   const markOrderDone = async (orderid: string) => {
     try {
       // PUT to mark as done
-      await fetch(`http://localhost:8000/users/kitchen/order/${orderid}/done`, {
+      await fetch(`https://jessika-patrological-crankly.ngrok-free.dev/users/kitchen/order/${orderid}/done`, {
         method: "PUT",
       });
 
       // DELETE the order
-      await fetch(`http://localhost:8000/users/delete/kitchen/order/${orderid}`, {
+      await fetch(`https://jessika-patrological-crankly.ngrok-free.dev/users/delete/kitchen/order/${orderid}`, {
         method: "DELETE",
       });
 
@@ -104,6 +104,7 @@ export default function KitchenDashboard() {
                 <p className="font-bold text-lg text-orange-700">{order.item_name}</p>
                 <p className="text-sm text-orange-600">{order.item_description}</p>
                 <p className="text-sm text-orange-600">Quantity: {order.item_quantity}</p>
+                <p className="text-sm text-orange-600">{order.table_no}</p>
               </div>
 
               <button
