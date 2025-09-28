@@ -18,7 +18,7 @@ export default function KitchenDashboard() {
   // 🔄 Fetch kitchen orders
   const fetchOrders = async () => {
     try {
-      const res = await fetch("https://jessika-patrological-crankly.ngrok-free.dev/users/kitchenorder");
+      const res = await fetch("http://localhost:8000/users/kitchenorder");
       if (!res.ok) return;
       const data = await res.json();
       setOrders(Array.isArray(data) ? data : []);
@@ -31,12 +31,12 @@ export default function KitchenDashboard() {
   const markOrderDone = async (orderid: string) => {
     try {
       // PUT to mark as done
-      await fetch(`https://jessika-patrological-crankly.ngrok-free.dev/users/kitchen/order/${orderid}/done`, {
+      await fetch(`http://localhost:8000/users/kitchen/order/${orderid}/done`, {
         method: "PUT",
       });
 
       // DELETE the order
-      await fetch(`https://jessika-patrological-crankly.ngrok-free.dev/users/delete/kitchen/order/${orderid}`, {
+      await fetch(`http://localhost:8000/users/delete/kitchen/order/${orderid}`, {
         method: "DELETE",
       });
 
